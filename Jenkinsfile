@@ -58,7 +58,7 @@ pipeline {
                     catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
                         bat '''
                         docker build -t registry-sr:latest .
-                        docker run -d --network my-network -p 9090:9090 --name registry-sr registry-sr:latest
+                        docker run -d --network my-network -p 8761:8761 --name registry-sr registry-sr:latest
                         '''
                     }
                 }
