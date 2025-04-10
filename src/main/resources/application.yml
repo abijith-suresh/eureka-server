@@ -5,6 +5,27 @@ spring:
   application:
     name: eureka-server
 
+  boot:
+    admin:
+      client:
+        url: http://localhost:9090
+        instance:
+          name: EUREKA-SERVER
+          prefer-ip: true
+        auto-registration: true
+        register-once: false
+        connection-timeout: 2s
+        read-timeout: 2s
+
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: "*"
+    endpoint:
+      health:
+        show-details: ALWAYS
+
 eureka:
   client:
     register-with-eureka: false
@@ -12,3 +33,11 @@ eureka:
   server:
     enable-self-preservation: false
     eviction-interval-timer-in-ms: 60000
+
+logging:
+  level:
+    de.codecentric.boot.admin.client: WARN
+    org.springframework.web.client.RestTemplate: WARN
+    org.apache.hc.client5.http: ERROR
+    org.apache.hc.core5.http: ERROR
+
