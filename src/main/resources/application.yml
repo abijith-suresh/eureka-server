@@ -5,6 +5,9 @@ spring:
   application:
     name: eureka-server
 
+  config:
+    import: optional:configserver:http://localhost:8888
+
   boot:
     admin:
       client:
@@ -17,15 +20,6 @@ spring:
         connection-timeout: 2s
         read-timeout: 2s
 
-  management:
-    endpoints:
-      web:
-        exposure:
-          include: "*"
-    endpoint:
-      health:
-        show-details: ALWAYS
-
 eureka:
   client:
     register-with-eureka: false
@@ -34,3 +28,11 @@ eureka:
     enable-self-preservation: false
     eviction-interval-timer-in-ms: 60000
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
